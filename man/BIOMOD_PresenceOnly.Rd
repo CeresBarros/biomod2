@@ -4,13 +4,7 @@
 \alias{BIOMOD_PresenceOnly}
 \title{Evaluate models with presence-only metrics}
 \usage{
-BIOMOD_PresenceOnly(
-  bm.mod = NULL,
-  bm.em = NULL,
-  bg.env = NULL,
-  perc = 0.9,
-  save.output = TRUE
-)
+BIOMOD_PresenceOnly(bm.mod = NULL, bm.em = NULL, bg.env = NULL, perc = 0.9)
 }
 \arguments{
 \item{bm.mod}{a \code{\link{BIOMOD.models.out}} object returned by the 
@@ -31,10 +25,6 @@ pseudo-absences selected for modeling})
 \item{perc}{a \code{numeric} between \code{0} and \code{1} corresponding to the percentage of 
 correctly classified presences for Minimal Predicted Area (see 
 \code{ecospat.mpa()} in \pkg{ecospat})}
-
-\item{save.output}{(\emph{optional, default} \code{TRUE}) \cr 
-A \code{logical} value defining whether the output is to be saved within the 
-\code{.BIOMOD_DATA} folder or not}
 }
 \value{
 A \code{data.frame} containing evaluation scores both for the evaluation metrics used in the 
@@ -172,7 +162,8 @@ Other Main functions:
 \code{\link{BIOMOD_Modeling}()},
 \code{\link{BIOMOD_Projection}()},
 \code{\link{BIOMOD_RangeSize}()},
-\code{\link{BIOMOD_Tuning}()}
+\code{\link{BIOMOD_Tuning}()},
+\code{\link{bm_CrossValidation}()}
 }
 \author{
 Frank Breiner, Maya Gueguen

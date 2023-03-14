@@ -206,7 +206,8 @@ Other Main functions:
 \code{\link{BIOMOD_Modeling}()},
 \code{\link{BIOMOD_PresenceOnly}()},
 \code{\link{BIOMOD_RangeSize}()},
-\code{\link{BIOMOD_Tuning}()}
+\code{\link{BIOMOD_Tuning}()},
+\code{\link{bm_CrossValidation}()}
 }
 \author{
 Wilfried Thuiller, Damien Georges

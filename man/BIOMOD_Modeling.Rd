@@ -11,15 +11,18 @@ BIOMOD_Modeling(
     "MAXNET"),
   models.pa = NULL,
   bm.options = NULL,
-  nb.rep = 1,
-  data.split.perc = 100,
-  data.split.table = NULL,
+  CV.strategy = "random",
+  CV.nb.rep = 1,
+  CV.perc = NULL,
+  CV.k = NULL,
+  CV.balance = NULL,
+  CV.strat = NULL,
+  CV.user.table = NULL,
   do.full.models = TRUE,
   weights = NULL,
   prevalence = NULL,
   metric.eval = c("KAPPA", "TSS", "ROC"),
   var.import = 0,
-  save.output = TRUE,
   scale.models = FALSE,
   nb.cpu = 1,
   seed.val = NULL,
@@ -44,18 +47,6 @@ are to be used, must be among \code{colnames(bm.format@PA.table)}}
 \item{bm.options}{a \code{\link{BIOMOD.models.options}} object returned by the
 \code{\link{BIOMOD_ModelingOptions}} function}
 
-\item{nb.rep}{an \code{integer} corresponding to the number of repetitions to be done for 
-calibration/validation splitting}
-
-\item{data.split.perc}{a \code{numeric} between \code{0} and \code{100} corresponding to the 
-percentage of data used to calibrate the models (calibration/validation splitting)}
-
-\item{data.split.table}{(\emph{optional, default} \code{NULL}) \cr 
-A \code{matrix} or \code{data.frame} defining for each repetition (in columns) which 
-observation lines should be used for models calibration (\code{TRUE}) and validation 
-(\code{FALSE}) (see \code{\link{BIOMOD_CrossValidation}}) \cr (\emph{if specified, 
-\code{nb.rep}, \code{data.split.perc} and \code{do.full.models} will be ignored})}
-
 \item{do.full.models}{(\emph{optional, default} \code{TRUE}) \cr 
 A \code{logical} value defining whether models calibrated and evaluated over the whole 
 dataset should be computed or not}
@@ -77,10 +68,6 @@ be among \code{ROC}, \code{TSS}, \code{KAPPA}, \code{ACCURACY}, \code{BIAS}, \co
 An \code{integer} corresponding to the number of permutations to be done for each variable to 
 estimate variable importance}
 
-\item{save.output}{(\emph{optional, default} \code{TRUE}) \cr 
-A \code{logical} value defining whether all outputs should be saved on hard drive or not 
-(\emph{! strongly recommended !})}
-
 \item{scale.models}{(\emph{optional, default} \code{FALSE}) \cr 
 A \code{logical} value defining whether all models predictions should be scaled with a 
 binomial GLM or not}
@@ -94,6 +81,18 @@ An \code{integer} value corresponding to the new seed value to be set}
 
 \item{do.progress}{(\emph{optional, default} \code{TRUE}) \cr 
 A \code{logical} value defining whether the progress bar is to be rendered or not}
+
+\item{nb.rep}{an \code{integer} corresponding to the number of repetitions to be done for 
+calibration/validation splitting}
+
+\item{data.split.perc}{a \code{numeric} between \code{0} and \code{100} corresponding to the 
+percentage of data used to calibrate the models (calibration/validation splitting)}
+
+\item{data.split.table}{(\emph{optional, default} \code{NULL}) \cr 
+A \code{matrix} or \code{data.frame} defining for each repetition (in columns) which 
+observation lines should be used for models calibration (\code{TRUE}) and validation 
+(\code{FALSE}) (see \code{\link{BIOMOD_CrossValidation}}) \cr (\emph{if specified, 
+\code{nb.rep}, \code{data.split.perc} and \code{do.full.models} will be ignored})}
 }
 \value{
 A \code{BIOMOD.models.out} object containing models outputs, or links to saved outputs. \cr
@@ -200,12 +199,6 @@ metrics (see Details).
   function. Several evaluation metrics can be selected. \emph{Please refer to the 
   \href{https://www.cawcr.gov.au/projects/verification/}{CAWRC website (section "Methods for dichotomous forecasts")} 
   to get detailed description of each metric.}
-  }
-  
-  \item{save.output}{\emph{If this argument is set to \code{FALSE}, it may prevent the evaluation 
-  of the ensemble models (see \code{\link{BIOMOD_EnsembleModeling}}) in further steps. Strong 
-  recommandation is to keep \code{save.output = TRUE}, even if it requires to have some free 
-  space onto the hard drive.}
   }
   
   \item{scale.models}{\bold{This parameter is quite experimental and it is recommended 
@@ -324,7 +317,8 @@ Other Main functions:
 \code{\link{BIOMOD_PresenceOnly}()},
 \code{\link{BIOMOD_Projection}()},
 \code{\link{BIOMOD_RangeSize}()},
-\code{\link{BIOMOD_Tuning}()}
+\code{\link{BIOMOD_Tuning}()},
+\code{\link{bm_CrossValidation}()}
 }
 \author{
 Wilfried Thuiller, Damien Georges, Robin Engler

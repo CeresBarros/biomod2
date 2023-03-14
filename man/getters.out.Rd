@@ -2,6 +2,8 @@
 % Please edit documentation in R/biomod2_classes_3.R
 \name{getters.out}
 \alias{getters.out}
+\alias{get_species_data}
+\alias{get_eval_data}
 \alias{get_options}
 \alias{get_calib_lines}
 \alias{get_formal_data}
@@ -232,7 +234,7 @@ function)})}
   \code{\link{BIOMOD.stored.models.options-class}} object from the
   \code{models.options} slot of a \code{\link{BIOMOD.models.out-class}}
   object} \item{\code{get_calib_lines}}{a
-  \code{\link{BIOMOD.stored.array-class}} object from the \code{calib.lines}
+  \code{\link{BIOMOD.stored.data.frame-class}} object from the \code{calib.lines}
   slot of a \code{\link{BIOMOD.models.out}} object}
 
   \item{\code{get_projected_models}}{a \code{vector} from the

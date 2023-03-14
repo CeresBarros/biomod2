@@ -6,14 +6,15 @@
 \title{Loop to compute all single species distribution models}
 \usage{
 bm_RunModelsLoop(
-  mod.prep.dat.pa,
+  bm.format,
+  weights,
+  calib.lines,
   modeling.id,
   models,
   models.pa,
   bm.options,
   metric.eval,
   var.import,
-  save.output = TRUE,
   scale.models = TRUE,
   nb.cpu = 1,
   seed.val = NULL,
@@ -22,19 +23,18 @@ bm_RunModelsLoop(
 
 bm_RunModel(
   model,
-  Data,
+  run.name,
+  dir.name = ".",
   modeling.id = "",
   bm.options,
+  Data,
   calib.lines.vec,
-  weights,
-  nam,
-  dir.name = ".",
+  weights.vec,
   xy = NULL,
   eval.data = NULL,
   eval.xy = NULL,
   metric.eval = c("ROC", "TSS", "KAPPA"),
   var.import = 0,
-  save.output = FALSE,
   scale.models = TRUE,
   nb.cpu = 1,
   seed.val = NULL,
@@ -42,9 +42,12 @@ bm_RunModel(
 )
 }
 \arguments{
-\item{mod.prep.dat.pa}{a \code{list} returned by the \code{\link{.BIOMOD_Modeling.prepare.data}} 
-function and containing pre-processed data from \code{\link{BIOMOD.formated.data}} or 
-\code{\link{BIOMOD.formated.data.PA}} for each pseudo-absence dataset}
+\item{weights}{a \code{vector} of \code{numeric} values corresponding to observation weights 
+(one per observation)}
+
+\item{calib.lines}{a \code{data.frame} containing \code{data.split.table} slot of 
+\code{mod.prep.dat.pa} parameter, or an extraction of \code{data.species} slot (for a specific PA 
+dataset extracted from \code{PA.table} slot)}
 
 \item{modeling.id}{a \code{character} corresponding to the name (ID) of the simulation set 
 (\emph{a random number by default})}
@@ -69,10 +72,6 @@ be among \code{ROC}, \code{TSS}, \code{KAPPA}, \code{ACCURACY}, \code{BIAS}, \co
 An \code{integer} corresponding to the number of permutations to be done for each variable to 
 estimate variable importance}
 
-\item{save.output}{(\emph{optional, default} \code{TRUE}) \cr 
-A \code{logical} value defining whether all outputs should be saved on hard drive or not 
-(\emph{! strongly recommended !})}
-
 \item{scale.models}{(\emph{optional, default} \code{FALSE}) \cr 
 A \code{logical} value defining whether all models predictions should be scaled with a 
 binomial GLM or not}
@@ -87,16 +86,11 @@ An \code{integer} value corresponding to the new seed value to be set}
 \item{do.progress}{(\emph{optional, default} \code{TRUE}) \cr 
 A \code{logical} value defining whether the progress bar is to be rendered or not}
 
-\item{Data}{a \code{data.frame} containing \code{data.species} and \code{data.env.var} slots 
-of \code{mod.prep.dat.pa} parameter}
-
-\item{weights}{a \code{vector} of \code{numeric} values corresponding to observation weights 
-(one per observation)}
-
-\item{nam}{a \code{character} corresponding to the model to be run (name + run.id)}
-
 \item{dir.name}{(\emph{optional, default} \code{.}) \cr
 A \code{character} corresponding to the modeling folder}
+
+\item{Data}{a \code{data.frame} containing \code{data.species} and \code{data.env.var} slots 
+of \code{mod.prep.dat.pa} parameter}
 
 \item{xy}{a \code{data.frame} containing \code{coord} slot of \code{mod.prep.dat.pa} 
 parameter (for a specific PA dataset extracted from \code{PA.table} slot of \code{mod.prep.dat.pa} 
@@ -108,9 +102,11 @@ parameter)}
 \item{eval.xy}{a \code{data.frame} containing \code{eval.coord} slot of \code{mod.prep.dat.pa} 
 parameter}
 
-\item{calib.lines}{a \code{data.frame} containing \code{data.split.table} slot of 
-\code{mod.prep.dat.pa} parameter, or an extraction of \code{data.species} slot (for a specific PA 
-dataset extracted from \code{PA.table} slot)}
+\item{mod.prep.dat.pa}{a \code{list} returned by the \code{\link{.BIOMOD_Modeling.prepare.data}} 
+function and containing pre-processed data from \code{\link{BIOMOD.formated.data}} or 
+\code{\link{BIOMOD.formated.data.PA}} for each pseudo-absence dataset}
+
+\item{nam}{a \code{character} corresponding to the model to be run (name + run.id)}
 }
 \value{
 A \code{list} containing for each model a \code{list} containing the following elements :

@@ -44,7 +44,7 @@ rescaled or not}
 object containing informations from \code{\link{BIOMOD_FormatingData}}
 object}
 
-\item{\code{calib.lines}}{a \code{\link{BIOMOD.stored.array-class}} object
+\item{\code{calib.lines}}{a \code{\link{BIOMOD.stored.data.frame-class}} object
 containing calibration lines}
 
 \item{\code{models.options}}{a \code{\link{BIOMOD.stored.models.options-class}}

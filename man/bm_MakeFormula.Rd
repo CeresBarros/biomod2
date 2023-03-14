@@ -15,30 +15,30 @@ bm_MakeFormula(
 \arguments{
 \item{resp.name}{a \code{character} corresponding to the response variable name}
 
-\item{expl.var}{a \code{matrix} or \code{data.frame} containing the explanatory variables that 
+\item{expl.var}{a \code{matrix} or \code{data.frame} containing the explanatory variables that
 will be used at the modeling step}
 
-\item{type}{a \code{character} corresponding to the wanted type of formula, must be 
+\item{type}{a \code{character} corresponding to the wanted type of formula, must be
 \code{simple}, \code{quadratic}, \code{polynomial} or \code{s_smoother}}
 
-\item{interaction.level}{an \code{integer} corresponding to the interaction level depth 
+\item{interaction.level}{an \code{integer} corresponding to the interaction level depth
 between explanatory variables}
 
-\item{k}{(\emph{optional, default} \code{NULL}) \cr 
-An \code{integer} corresponding to the smoothing parameter value of \code{\link[mgcv]{s}} 
+\item{k}{(\emph{optional, default} \code{NULL}) \cr
+An \code{integer} corresponding to the smoothing parameter value of \code{\link[mgcv]{s}}
 or \code{\link[gam]{s}} arguments (\emph{used only if \code{type = 's_smoother'}})}
 }
 \value{
-A \code{\link[stats]{formula}} class object that can be directly given to most of 
+A \code{\link[stats]{formula}} class object that can be directly given to most of
 \R statistical models.
 }
 \description{
-This internal \pkg{biomod2} function allows the user to create easily a 
+This internal \pkg{biomod2} function allows the user to create easily a
 standardized formula that can be used later by statistical models.
 }
 \details{
-It is advised to give only a subset of \code{expl.var} table to avoid useless memory consuming. 
-\cr If some explanatory variables are factorial, \code{expl.var} must be a \code{data.frame} 
+It is advised to give only a subset of \code{expl.var} table to avoid useless memory consuming.
+\cr If some explanatory variables are factorial, \code{expl.var} must be a \code{data.frame}
 whose corresponding columns are defined as \code{factor}.
 }
 \examples{
@@ -58,8 +58,8 @@ bm_MakeFormula(resp.name = 'myResp.s',
 
 }
 \seealso{
-\code{\link[stats]{formula}}, \code{\link[mgcv]{s}}, \code{\link[gam]{s}}, 
-\code{\link{BIOMOD_ModelingOptions}}, \code{\link{BIOMOD_Tuning}}, 
+\code{\link[stats]{formula}}, \code{\link[mgcv]{s}}, \code{\link[gam]{s}},
+\code{\link{BIOMOD_ModelingOptions}}, \code{\link{BIOMOD_Tuning}},
 \code{\link{bm_RunModelsLoop}}
 
 Other Secundary functions: 
