@@ -15,8 +15,8 @@
 a data.frame without categorical variables
 }
 \description{
-Internal function transform categorical variables in a 
-data.frame into numeric variables. Mostly used with maxent which cannot 
+Internal function transform categorical variables in a
+data.frame into numeric variables. Mostly used with maxent which cannot
 read character
 }
 \keyword{internal}

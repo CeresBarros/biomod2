@@ -19,7 +19,7 @@ check_duplicated_cells(env, xy, sp, filter.raster)
 a \code{list}
 }
 \description{
-Identify data that are contained in the same raster cells ; 
+Identify data that are contained in the same raster cells ;
 print warnings if need be and filter those data if asked for.
 }
 \keyword{internal}

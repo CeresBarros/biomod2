@@ -7,7 +7,7 @@
 .transform_model.as.col(df)
 }
 \arguments{
-\item{df}{a long \code{data.frame}, generally a standard output of 
+\item{df}{a long \code{data.frame}, generally a standard output of
 \code{\link{get_predictions}}}
 }
 \value{
@@ -19,7 +19,7 @@ to ensure back-compatibility with former output of \code{\link{get_predictions}}
 (i.e. for \pkg{biomod2} version < 4.2-2). It transform a long \code{data.frame}
 into a wide \code{data.frame} with each column corresponding to a single model.
 
-\emph{Note that the function is intended for internal use but have been 
+\emph{Note that the function is intended for internal use but have been
 made available for compatibility with \pkg{ecospat}}
 }
 \author{
